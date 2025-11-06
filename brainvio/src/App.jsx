@@ -4,7 +4,7 @@ function App() {
   
 
   return (
-    <header>HELLO</header>
+    <header>Good Bye</header>
   );
 
 
