@@ -1,12 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+/* Base styles */
+body, html, #root {
+    height: 100%;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    transition: background-color 0.5s, color 0.5s;
+}
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    transition: all 0.5s ease;
+}
 
-.Home{
-  background-color: hsl(200, 100%, 50%);
-  color: rgb(0, 0, 0);
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  width: 300px; /* Sets a fixed width of 200 pixels */
-  height: 50px; /* Sets a fixed height of 50 pixels */
+.logo {
+    font-size: 4rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+}
+
+/* Buttons */
+button {
+    padding: 15px 40px;
+    margin: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset;
+}
+
+/* Dark Mode */
+.dark-mode {
+    color: #00ffff;
+}
+
+.dark-mode .login {
+    background: linear-gradient(145deg, #1e1e2f, #1e88e5);
+    box-shadow: 0 0 20px #1e88e5, 0 0 40px #00ffff inset;
+    color: white;
+}
+
+.dark-mode .signup {
+    background: linear-gradient(145deg, #1e1e2f, #43a047);
+    box-shadow: 0 0 20px #43a047, 0 0 40px #00ffff inset;
+    color: white;
+}
+
+.dark-mode .toggle {
+    background: linear-gradient(145deg, #1e1e2f, #ffb300);
+    box-shadow: 0 0 20px #ffb300, 0 0 40px #00ffff inset;
+    color: black;
+}
+
+/* Light Mode */
+.light-mode {
+    color: #121212;
+}
+
+.light-mode .login {
+    background: linear-gradient(145deg, #e0e0e0, #1976d2);
+    box-shadow: 0 0 15px #1976d2, 0 0 30px #90caf9 inset;
+    color: white;
+}
+
+.light-mode .signup {
+    background: linear-gradient(145deg, #e0e0e0, #388e3c);
+    box-shadow: 0 0 15px #388e3c, 0 0 30px #a5d6a7 inset;
+    color: white;
+}
+
+.light-mode .toggle {
+    background: linear-gradient(145deg, #e0e0e0, #ffb300);
+    box-shadow: 0 0 15px #ffb300, 0 0 30px #ffe082 inset;
+    color: black;
+}
+
+/* Hover effects for all buttons */
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff inset;
 }

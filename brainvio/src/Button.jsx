@@ -4,7 +4,7 @@ function Button(){
 
     return(
         <>
-            <button className = "Home">Im gay</button>
+            <button className = "Home">Im so tuff</button>
         </>
     );
 
