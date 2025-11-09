@@ -3,7 +3,7 @@ function Header(){
 
     return(
 
-        <header>Good Bye Losers</header>
+        <header>Good Losers</header>
 
     );
 

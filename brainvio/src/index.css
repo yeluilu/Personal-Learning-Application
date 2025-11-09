@@ -1,11 +1,12 @@
 
 
-
-.Button{
+.Home{
   background-color: hsl(200, 100%, 50%);
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  width: 300px; /* Sets a fixed width of 200 pixels */
+  height: 50px; /* Sets a fixed height of 50 pixels */
 }
