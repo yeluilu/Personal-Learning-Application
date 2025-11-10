@@ -1,5 +1,5 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Page1 from './Pages/page1';
+import LoginPage from './Pages/LoginPage';
 import Home from './Pages/home';
 
 
@@ -10,7 +10,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path = "/" element = {<Home/>}/>
-				<Route path = "/page1" element = {<Page1/>}/>
+				<Route path = "/LoginPage" element = {<LoginPage/>}/>
 			</Routes>
 		</Router>
 	)

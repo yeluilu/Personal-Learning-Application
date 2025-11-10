@@ -1,9 +1,10 @@
 
 
-function Page1(){
+function LoginPage(){
     return(
         <h1> This is Page 1</h1>
     );
 }
 
-export default Page1
+
+export default LoginPage
