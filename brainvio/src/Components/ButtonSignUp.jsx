@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
 
 
 // Sign up button
 function ButtonSign(){
     return(
-        <button className = "signup">Sign Up</button>
+        <Link to = "/SignupPage">
+            <button className = "signup">Sign Up</button>
+        </Link>
     );
 }
 

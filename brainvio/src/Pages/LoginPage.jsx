@@ -1,9 +1,11 @@
 
 
 function LoginPage(){
-    return(
-        <h1> This is Page 1</h1>
-    );
+    return (
+        <div className="container">
+        <h1 className="login-header">Login</h1>
+        </div>
+  );
 }
 
 
