@@ -90,28 +90,70 @@ button:hover {
 }
 
 
-/* Login Page Header */
 .login-header {
-    font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
     color: #00ffff;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
-    text-shadow: 
-        0 0 5px #00ffff, 
-        0 0 10px #00ffff, 
-        0 0 20px #00ffff, 
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
         0 0 40px #43a047;
     transition: all 0.3s ease;
 }
 
-/* Hover effect for subtle glow */
-.login-header:hover {
-    text-shadow: 
-        0 0 10px #00ffff, 
-        0 0 20px #00ffff, 
-        0 0 40px #00ffff, 
-        0 0 60px #43a047;
-    transform: scale(1.05);
+/* Login Form Container */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: rgba(20, 20, 40, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff inset;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Login Input Fields */
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #43a047;
+    box-shadow: 0 0 10px #43a047, 0 0 20px #00ffff inset;
+}
+
+/* Login Button (inherits theme mode styles) */
+.login-form .login {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Message (optional for success/error feedback) */
+.login-message {
+    margin-top: 15px;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
