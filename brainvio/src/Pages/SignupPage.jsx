@@ -2,7 +2,7 @@
 
 function SignupPage(){
     return(
-        <h1>This is the Sign up page</h1>
+        <h1>Why arent you working</h1>
     )
 }
 
