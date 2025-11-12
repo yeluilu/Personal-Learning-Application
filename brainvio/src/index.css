@@ -139,7 +139,7 @@ button:hover {
 
 /* Login Button (inherits theme mode styles) */
 .login-form .login {
-    width: 100%;
+    width: 99%;
     margin-top: 15px;
     padding: 15px 0;
     font-size: 1.2rem;
