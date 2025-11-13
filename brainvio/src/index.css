@@ -205,3 +205,17 @@ button:hover {
     border-color: #43a047;
     box-shadow: 0 0 10px #43a047, 0 0 20px #00ffff inset;
 }
+
+.UserFirstName{
+    font-size: 3rem;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #43a047;
+    transition: all 0.3s ease;
+}

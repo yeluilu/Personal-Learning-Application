@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignupPage(){
 
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,7 +25,13 @@ function SignupPage(){
             });
 
             const result = await response.json();
-            console.log("Server response:", result);
+            if (response.ok){
+                console.log("Success:", result);
+                navigate("/UsersPage", { state: { user: result.user } });
+            }
+            else{
+                 console.error("Signup failed:", result);
+            }
         } catch (error) {
             console.error("Error sending data:", error);
         }

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException
 
 # -------------------------
 # Models
@@ -35,7 +36,7 @@ user_data_base = {}
 @app.post("/signup")
 async def create_user(user: User):
     if user.email in user_data_base:
-        return {"error": "Email already in use"}
+        raise HTTPException(status_code=409, detail="Email already in use")
 
     # Save user data (in memory)
     user_data_base[user.email] = {
