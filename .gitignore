@@ -5,3 +5,7 @@ venv/
 # Node/React
 node_modules/
 build/
+
+database.db
+*.sqlite
+*.sqlite3

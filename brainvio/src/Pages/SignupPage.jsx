@@ -27,7 +27,7 @@ function SignupPage(){
             const result = await response.json();
             if (response.ok){
                 console.log("Success:", result);
-                navigate("/UsersPage", { state: { user: result.user } });
+                navigate("/UsersPage", { state: { user: result } });
             }
             else{
                  console.error("Signup failed:", result);

@@ -6,7 +6,7 @@ function UsersPage(){
 
     return(
         <div className = "container">
-            <h1 className = "UserFirstName">{user ? `Hello ${user.FirstName}` : "No user found"}</h1>
+            <h1 className = "UserFirstName">{user ? `Hello ${user.firstName}` : "No user found"}</h1>
         </div>
     );
 }
