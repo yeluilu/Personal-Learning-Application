@@ -21,7 +21,7 @@ body, html, #root {
     font-size: 4rem;
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; /* optimized glow */
 }
 
 /* Buttons */
@@ -34,7 +34,7 @@ button {
     font-size: 1.2rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset; /* optimized glow */
 }
 
 /* Dark Mode */
@@ -44,19 +44,19 @@ button {
 
 .dark-mode .login {
     background: linear-gradient(145deg, #1e1e2f, #1e88e5);
-    box-shadow: 0 0 20px #1e88e5, 0 0 40px #00ffff inset;
+    box-shadow: 0 0 15px #1e88e5, 0 0 20px #00ffff inset; /* optimized glow */
     color: white;
 }
 
 .dark-mode .signup {
     background: linear-gradient(145deg, #1e1e2f, #43a047);
-    box-shadow: 0 0 20px #43a047, 0 0 40px #00ffff inset;
+    box-shadow: 0 0 15px #43a047, 0 0 20px #00ffff inset; /* optimized glow */
     color: white;
 }
 
 .dark-mode .toggle {
     background: linear-gradient(145deg, #1e1e2f, #ffb300);
-    box-shadow: 0 0 20px #ffb300, 0 0 40px #00ffff inset;
+    box-shadow: 0 0 15px #ffb300, 0 0 20px #00ffff inset; /* optimized glow */
     color: black;
 }
 
@@ -67,26 +67,26 @@ button {
 
 .light-mode .login {
     background: linear-gradient(145deg, #e0e0e0, #1976d2);
-    box-shadow: 0 0 15px #1976d2, 0 0 30px #90caf9 inset;
+    box-shadow: 0 0 15px #1976d2, 0 0 20px #90caf9 inset; /* optimized glow */
     color: white;
 }
 
 .light-mode .signup {
     background: linear-gradient(145deg, #e0e0e0, #388e3c);
-    box-shadow: 0 0 15px #388e3c, 0 0 30px #a5d6a7 inset;
+    box-shadow: 0 0 15px #388e3c, 0 0 20px #a5d6a7 inset; /* optimized glow */
     color: white;
 }
 
 .light-mode .toggle {
     background: linear-gradient(145deg, #e0e0e0, #ffb300);
-    box-shadow: 0 0 15px #ffb300, 0 0 30px #ffe082 inset;
+    box-shadow: 0 0 15px #ffb300, 0 0 20px #ffe082 inset; /* optimized glow */
     color: black;
 }
 
 /* Hover effects for all buttons */
 button:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff inset;
+    box-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff inset; /* optimized hover glow */
 }
 
 
@@ -96,11 +96,7 @@ button:hover {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
-    text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #43a047;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #43a047; /* optimized glow */
     transition: all 0.3s ease;
 }
 
@@ -112,7 +108,7 @@ button:hover {
     padding: 30px;
     background: rgba(20, 20, 40, 0.85);
     border-radius: 15px;
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff inset;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset; /* optimized glow */
     width: 100%;
     max-width: 350px;
 }
@@ -130,11 +126,12 @@ button:hover {
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
+    box-shadow: 0 0 10px #43a047 inset; /* optimized glow */
 }
 
 .login-form input:focus {
     border-color: #43a047;
-    box-shadow: 0 0 10px #43a047, 0 0 20px #00ffff inset;
+    box-shadow: 0 0 10px #43a047 inset; /* optimized glow */
 }
 
 /* Login Button (inherits theme mode styles) */
@@ -153,12 +150,10 @@ button:hover {
 .login-message {
     margin-top: 15px;
     color: #00ffff;
-    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    text-shadow: 0 0 10px #00ffff; /* optimized glow */
     font-size: 1rem;
     transition: all 0.3s ease;
 }
-
-
 
 
 .signup-header {
@@ -167,11 +162,7 @@ button:hover {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
-    text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #43a047;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #43a047; /* optimized glow */
     transition: all 0.3s ease;
 }
 
@@ -179,10 +170,10 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;      /*this was 30*/
+    padding: 30px;
     background: rgba(20, 20, 40, 0.85);
     border-radius: 15px;
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff inset;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset; /* optimized glow */
     width: 100%;
     max-width: 350px;
 }
@@ -199,11 +190,12 @@ button:hover {
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
+    box-shadow: 0 0 10px #43a047 inset; /* optimized glow */
 }
 
 .signup-form input:focus {
     border-color: #43a047;
-    box-shadow: 0 0 10px #43a047, 0 0 20px #00ffff inset;
+    box-shadow: 0 0 10px #43a047 inset; /* optimized glow */
 }
 
 .UserFirstName{
@@ -212,10 +204,6 @@ button:hover {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
-    text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #43a047;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #43a047; /* optimized glow */
     transition: all 0.3s ease;
 }
