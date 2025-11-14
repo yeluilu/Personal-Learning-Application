@@ -1,69 +1,17 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, HTTPException
+from routers import users
 
-# -------------------------
-# Models
-# -------------------------
-class User(BaseModel):
-    firstName: str
-    lastName: str
-    email: str
-    username: str
-    password: str  # added password
-
-class LoginUser(BaseModel):
-    email: str
-    password: str
-# -------------------------
-# FastAPI app
-# -------------------------
 app = FastAPI()
 
-# Enable CORS so React can access the backend
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # in production, set your frontend URL instead of "*"
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# In-memory user storage
-user_data_base = {}
-
-# -------------------------
-# Routes
-# -------------------------
-@app.post("/signup")
-async def create_user(user: User):
-    if user.email in user_data_base:
-        raise HTTPException(status_code=409, detail="Email already in use")
-
-    # Save user data (in memory)
-    user_data_base[user.email] = {
-        "FirstName": user.firstName,
-        "Lastname": user.lastName,
-        "username": user.username,
-        "password": user.password  # note: storing plain password is NOT safe in production
-    }
-
-    return {"message": "User created successfully!", "user": user_data_base[user.email]}
-
-# Optional: route to see all users (for testing)
-@app.post("/login")
-async def login(user: LoginUser):
-    # Check if email exists
-    if user.email not in user_data_base:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    # Check password
-    stored_user = user_data_base[user.email]
-    if stored_user["password"] != user.password:
-        raise HTTPException(status_code=401, detail="Incorrect password")
-
-    return {
-        "message": "Successful Login",
-        "user": stored_user
-    }
+# Include routers
+app.include_router(users.router, prefix="/users", tags=["users"])
