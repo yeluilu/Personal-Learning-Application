@@ -13,6 +13,9 @@ class User(BaseModel):
     username: str
     password: str  # added password
 
+class LoginUser(BaseModel):
+    email: str
+    password: str
 # -------------------------
 # FastAPI app
 # -------------------------
@@ -49,6 +52,18 @@ async def create_user(user: User):
     return {"message": "User created successfully!", "user": user_data_base[user.email]}
 
 # Optional: route to see all users (for testing)
-@app.get("/users")
-async def get_users():
-    return user_data_base
+@app.post("/login")
+async def login(user: LoginUser):
+    # Check if email exists
+    if user.email not in user_data_base:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # Check password
+    stored_user = user_data_base[user.email]
+    if stored_user["password"] != user.password:
+        raise HTTPException(status_code=401, detail="Incorrect password")
+
+    return {
+        "message": "Successful Login",
+        "user": stored_user
+    }
