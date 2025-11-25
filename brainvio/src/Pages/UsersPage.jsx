@@ -31,7 +31,7 @@ function UsersPage() {
     return (
         <div className="container">
             <h1 className="UserFirstName">
-                {savedToken ? `Hello ${savedToken}` : "No user found"}
+                {userData ? `Hello ${userData.username}` : "No user found"}
             </h1>
 
             {userData && (
