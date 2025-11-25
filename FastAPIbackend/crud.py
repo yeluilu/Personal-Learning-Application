@@ -1,11 +1,10 @@
 from typing import Dict
-from models import User, LoginUser
 from sqlmodel import Session, select
 from database import User
 
-def authenticate_user_db(email: str, password: str, session: Session):
+def authenticate_user_db(username: str, password: str, session: Session):
     # Query the user by email
-    stored_user = session.exec(select(User).where(User.email == email)).first()
+    stored_user = session.exec(select(User).where(User.username == username)).first()
     if not stored_user:
         return None, "User not found"
     

@@ -3,6 +3,10 @@ from database import User, SessionDep, get_session
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import select, Session
 from crud import authenticate_user_db
+from typing import Annotated
+
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+
 
 router = APIRouter()
 
@@ -10,20 +14,22 @@ router = APIRouter()
 async def signup(user: User, session: SessionDep) -> User:
     try:
         session.add(user)
-        session.commit()
+        session.commit() 
         session.refresh(user)
         return user
     except IntegrityError:
         session.rollback()  # undo the failed transaction
         raise HTTPException(status_code=409, detail="Email already in use")
     
+
+
 @router.post("/login")
-async def login(user: User, session: SessionDep):
-    user_data, error = authenticate_user_db(user.email, user.password, session)
+async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], session: SessionDep):
+    user_dict, error = authenticate_user_db(form_data.username, form_data.password, session)
     if error:
-        raise HTTPException(status_code=401, detail=error)
-    
-    return {"message": "Successful Login", "user": user_data}
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    return {"access_token": user_dict.username, "token_type": "bearer"}
+
 
 
 

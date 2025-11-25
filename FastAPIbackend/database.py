@@ -5,8 +5,8 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 
 class User(SQLModel, table=True):
-    email: str = Field(index=True, primary_key = True)
-    username: str = Field(index=True, unique = True)
+    username: str = Field(index=True, primary_key = True)
+    email: str = Field(index=True, unique = True)
     firstName: str
     lastName: str
     password: str

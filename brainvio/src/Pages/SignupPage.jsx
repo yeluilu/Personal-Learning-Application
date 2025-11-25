@@ -16,7 +16,7 @@ function SignupPage(){
         const data = { firstName, lastName, email, username, password };
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/users/signup", {
+            const response = await fetch("http://127.0.0.1:8000/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -27,6 +27,7 @@ function SignupPage(){
             const result = await response.json();
             if (response.ok){
                 console.log("Success:", result);
+                localStorage.setItem("authToken", result.username);
                 navigate("/UsersPage", { state: { user: result } });
             }
             else{
