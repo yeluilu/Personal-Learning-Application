@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
-from database import User, SessionDep, get_session
+from database import User, SessionDep, get_session, authenticate_user_db
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import select, Session
-from crud import authenticate_user_db
 from typing import Annotated
 
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
