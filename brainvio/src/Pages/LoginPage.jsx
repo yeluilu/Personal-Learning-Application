@@ -29,14 +29,14 @@ function LoginPage() {
       });
 
       const result = await response.json();
-      const token = result.access_token;
-      localStorage.setItem("authToken", token);
 
       if(response.ok){
+        const token = result.access_token;
+        localStorage.setItem("authToken", token);
         console.log("Success:", result);
         navigate("/UsersPage");
       } else {
-        setError("Invalid username or password");
+        setError(result.detail || "Incorrect username or password");
       }
     } catch (err) {
       setError("Connection error. Please try again.");

@@ -71,6 +71,16 @@ router = APIRouter()
 
 @router.post("/signup")
 async def signup(user: User, session: SessionDep) -> Token:
+    # Check if username already exists
+    existing_user = session.exec(select(User).where(User.username == user.username)).first()
+    if existing_user:
+        raise HTTPException(status_code=409, detail="Username already in use")
+    
+    # Check if email already exists
+    existing_email = session.exec(select(User).where(User.email == user.email)).first()
+    if existing_email:
+        raise HTTPException(status_code=409, detail="Email already in use")
+    
     hashed_password = get_password_hash(user.password)
     user.password = hashed_password
 
@@ -86,7 +96,7 @@ async def signup(user: User, session: SessionDep) -> Token:
         return Token(access_token=access_token, token_type="bearer")
     except IntegrityError:
         session.rollback()
-        raise HTTPException(status_code=409, detail="Email already in use")
+        raise HTTPException(status_code=409, detail="Username or email already in use")
     
 
 # Where user sends login info, we respond with token
