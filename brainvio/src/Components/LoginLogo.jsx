@@ -2,7 +2,7 @@
 
 function Logo(){
     return(
-        <h1 className="logo">Brainvio</h1>
+        <h1 className="logo">CalmlyAI</h1>
     );
 }
 

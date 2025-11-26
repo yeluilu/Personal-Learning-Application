@@ -70,7 +70,7 @@ def authenticate_user_db(username: str, password: str, session: Session):
 router = APIRouter()
 
 @router.post("/signup")
-async def signup(user: User, session: SessionDep) -> User:
+async def signup(user: User, session: SessionDep) -> Token:
     hashed_password = get_password_hash(user.password)
     user.password = hashed_password
 
@@ -78,9 +78,14 @@ async def signup(user: User, session: SessionDep) -> User:
         session.add(user)
         session.commit() 
         session.refresh(user)
-        return user
+        
+        # Generate token for new user
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = create_access_token(data={"sub": user.username}, expires_delta=access_token_expires)
+        
+        return Token(access_token=access_token, token_type="bearer")
     except IntegrityError:
-        session.rollback()  # undo the failed transaction
+        session.rollback()
         raise HTTPException(status_code=409, detail="Email already in use")
     
 
