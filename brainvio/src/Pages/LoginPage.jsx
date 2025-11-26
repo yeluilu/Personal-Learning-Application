@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import { applyTheme, getSavedTheme } from "../utils/themeHelper";
 
 function LoginPage() {
+  useEffect(() => {
+    applyTheme(getSavedTheme());
+  }, []);
 
   const navigate = useNavigate();
   

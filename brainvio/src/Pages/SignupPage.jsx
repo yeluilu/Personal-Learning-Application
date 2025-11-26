@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { applyTheme, getSavedTheme } from "../utils/themeHelper";
 
 function SignupPage(){
+    useEffect(() => {
+        applyTheme(getSavedTheme());
+    }, []);
 
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
@@ -25,9 +29,10 @@ function SignupPage(){
             });
 
             const result = await response.json();
+            const token = result.access_token;
             if (response.ok){
                 console.log("Success:", result);
-                localStorage.setItem("authToken", result.username);
+                localStorage.setItem("authToken", token);
                 navigate("/UsersPage", { state: { user: result } });
             }
             else{

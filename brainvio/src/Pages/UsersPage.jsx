@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+import { applyTheme, getSavedTheme } from "../utils/themeHelper";
 
 function UsersPage() {
     const savedToken = localStorage.getItem("authToken");
     const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        applyTheme(getSavedTheme());
+    }, []);
 
     useEffect(() => {
         async function getUser() {
