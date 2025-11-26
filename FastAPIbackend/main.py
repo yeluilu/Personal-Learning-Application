@@ -3,11 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import users
 from routers.users import SECRET_KEY, ALGORITHM
 from database import create_db_and_tables, User, SessionDep
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
-from sqlmodel import select, Session
+from sqlmodel import select
 from jwt.exceptions import InvalidTokenError
-from pwdlib import PasswordHash
 from pydantic import BaseModel
 import jwt
 
