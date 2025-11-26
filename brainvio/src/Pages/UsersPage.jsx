@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { applyTheme, getSavedTheme } from "../utils/themeHelper";
 import React from 'react';
 import NewJournalModal from '../Components/NewJournalModal.jsx';
+
+export const UserContext = createContext(null);
 
 function UsersPage() {
     const savedToken = localStorage.getItem("authToken");
@@ -106,7 +108,45 @@ function UsersPage() {
                                     <span>Progress</span>
                                 </NavLink>
                             </li>
+                            <li style={{marginTop:'1rem', paddingTop:'1rem', borderTop:'1px solid rgba(0,0,0,0.05)'}}>
+                                <span style={{fontSize:'0.75rem', textTransform:'uppercase', color:'var(--muted)', fontWeight:600, display:'block', marginBottom:'0.5rem'}}>Features</span>
+                            </li>
                             <li>
+                                <NavLink to="/UsersPage/mood" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>😊 Mood Tracking</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>🧘 Guided Exercises</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/cbt" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>🧠 CBT Tools</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/community" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>👥 Community</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/reminders" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>🔔 Reminders</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/crisis" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>🆘 Crisis Support</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>📚 Resources</span>
+                                </NavLink>
+                            </li>
+                            <li style={{marginTop:'1rem', borderTop:'1px solid rgba(0,0,0,0.05)', paddingTop:'1rem'}}>
                                 <NavLink to="/UsersPage/settings" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9.4 4a7.9 7.9 0 0 0-.1-1l2.1-1.6-2-3.5-2.6.6a7.7 7.7 0 0 0-1.6-.9L15.7.9h-3.4L10.8 5c-.6.2-1.2.5-1.8.9L6.4 5.4 3.8 8.9l2.1 1.6c-.1.3-.1.6-.1 1s0 .7.1 1L3.8 14.7l2.6 3.5 2.6-.6c.5.4 1.1.7 1.8.9l1.5 4.1h3.4l1.5-4.1c.6-.2 1.1-.5 1.6-.9l2.6.6 2-3.5-2.1-1.6c.1-.3.1-.6.1-1z"/></svg>
                                     <span>Settings</span>
@@ -141,44 +181,24 @@ function UsersPage() {
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/settings" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Settings</NavLink></li>
+                                    <li style={{marginBottom:'1rem', paddingBottom:'1rem', borderBottom:'1px solid rgba(0,0,0,0.05)', marginTop:'1rem'}}><NavLink to="/UsersPage/settings" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Settings</NavLink></li>
+                                    <li style={{fontSize:'0.75rem', textTransform:'uppercase', color:'var(--muted)', fontWeight:600, marginBottom:'0.5rem'}}>Features</li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/mood" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>😊 Mood Tracking</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧘 Guided Exercises</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/cbt" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧠 CBT Tools</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/community" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>👥 Community</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/reminders" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🔔 Reminders</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/crisis" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🆘 Crisis Support</NavLink></li>
+                                    <li><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>📚 Resources</NavLink></li>
                                 </ul>
                             </nav>
                         </div>
                     )}
-                    <div className="dashboard-header">
-                        <h1 className="UserFirstName">{userData ? `Hello ${userData.username}` : "No user found"}</h1>
-                    </div>
-
-                    <div className="welcome-card mb-1">
-                        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-                            <div>
-                                <h3 style={{margin:0}}>Welcome back{userData ? `, ${userData.firstName || userData.username}` : ''}.</h3>
-                                <p className="muted-small" style={{margin:'6px 0 0'}}>Here's your wellness dashboard. Start by opening your journal.</p>
-                            </div>
-                            <div>
-                                <button className="btn-primary" onClick={() => setIsJournalOpen(true)}>New Entry</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid">
-                        <div className="card">
-                            <h4 style={{marginTop:0}}>Quick Actions</h4>
-                            <p className="muted-small">Create a new journal entry, track a mood, or log an activity.</p>
-                        </div>
-                        <div className="card">
-                            <h4 style={{marginTop:0}}>Recent</h4>
-                            <p className="muted-small">No recent entries yet — your journal will appear here.</p>
-                        </div>
-                        <div className="card">
-                            <h4 style={{marginTop:0}}>Stats</h4>
-                            <p className="muted-small">Mood trends and insights will appear here.</p>
-                        </div>
-                    </div>
 
                     <section style={{marginTop:'1rem'}}>
-                        <Outlet />
+                        <UserContext.Provider value={{ userData, setIsJournalOpen }}>
+                            <Outlet />
+                        </UserContext.Provider>
                     </section>
                 </main>
             </div>

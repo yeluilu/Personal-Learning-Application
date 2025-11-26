@@ -50,15 +50,34 @@ html, body, #root {
     height: 100%;
     text-align: center;
     padding: 2rem;
+    overflow: visible;
+    width: 100%;
 }
 
 /* Logo & Headers */
-.logo, .login-header, .signup-header, .UserFirstName {
+.logo {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin: 0 0 1.25rem 0;
+    transition: transform 0.25s ease, color 0.25s ease;
+    color: var(--text) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    width: auto;
+}
+
+.login-header, .signup-header, .UserFirstName {
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: -0.4px;
     margin-bottom: 1.25rem;
     transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.dark-mode .logo {
+    color: var(--text) !important;
 }
 
 /* Card / Form base (glassmorphism) */
@@ -388,6 +407,37 @@ button {
 /* focus styles for accessibility */
 .modal-card :focus, .modal-card textarea:focus, .nav-item:focus { box-shadow: 0 6px 18px var(--focus-glow); outline: none; }
 
+/* Greeting card */
+.greeting-card {
+    background: linear-gradient(135deg, rgba(10,132,255,0.06), rgba(10,132,255,0.02));
+    border: 1px solid rgba(10,132,255,0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.greeting-emoji { font-size: 2rem; margin-right: 0.5rem; }
+.greeting-text { display: flex; align-items: center; margin-bottom: 0.5rem; }
+.greeting-main { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.greeting-sub { font-size: 0.95rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 880px) {
     .dashboard { flex-direction: column; padding: 0 1rem; }
     .dashboard-sidebar { width:100%; display:flex; gap:0.5rem; overflow:auto }
@@ -398,3 +448,18 @@ button {
 /* small utility spacing */
 .mb-1 { margin-bottom: 1rem; }
 .muted-small { color: var(--muted); font-size: 0.95rem; }
+
+/* Home page h1 styling */
+.home-title {
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    margin: 1rem 0 1rem 0 !important;
+    letter-spacing: -0.6px !important;
+    color: #0a84ff !important;
+    text-shadow: 0 4px 12px rgba(10,132,255,0.3) !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 5rem !important;
+    line-height: 1.1 !important;
+}
