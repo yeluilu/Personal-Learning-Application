@@ -10,8 +10,8 @@ export default function Community() {
 
     return (
         <div>
-            <h2>Community Support</h2>
-            <p className="muted-small">Connect with peers, share experiences, and find support in moderated communities.</p>
+            <h2>AI Therapist</h2>
+            <p className="muted-small">Connect with AI, share experiences, and find support within AI.</p>
             
             <div style={{marginTop:'1.5rem', display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(180px, 1fr))', gap:'1rem'}}>
                 {topics.map((topic, i) => (
@@ -24,10 +24,6 @@ export default function Community() {
                         <button className="btn-ghost" style={{marginTop:'0.75rem', fontSize:'0.85rem', padding:'6px 12px'}}>Join</button>
                     </div>
                 ))}
-            </div>
-
-            <div style={{marginTop:'2rem', padding:'1rem', borderRadius:'10px', background:'rgba(10,132,255,0.05)', border:'1px solid rgba(10,132,255,0.1)'}}>
-                <p className="muted-small" style={{margin:0}}>All communities are moderated to ensure safety and reduce stigma. Be respectful and supportive.</p>
             </div>
         </div>
     );

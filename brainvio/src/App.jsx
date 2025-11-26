@@ -10,7 +10,7 @@ import DashboardSettings from './Pages/DashboardSettings.jsx';
 import MoodTracking from './Pages/MoodTracking.jsx';
 import GuidedExercises from './Pages/GuidedExercises.jsx';
 import CBTTools from './Pages/CBTTools.jsx';
-import Community from './Pages/Community.jsx';
+import AITherapist from './Pages/AITherapist.jsx';
 import Reminders from './Pages/Reminders.jsx';
 import CrisisSupport from './Pages/CrisisSupport.jsx';
 import Resources from './Pages/Resources.jsx';
@@ -31,7 +31,7 @@ function App() {
 				<Route path="mood" element={<MoodTracking/>} />
 				<Route path="exercises" element={<GuidedExercises/>} />
 				<Route path="cbt" element={<CBTTools/>} />
-				<Route path="community" element={<Community/>} />
+				<Route path="aitherapist" element={<AITherapist/>} />
 				<Route path="reminders" element={<Reminders/>} />
 				<Route path="crisis" element={<CrisisSupport/>} />
 				<Route path="resources" element={<Resources/>} />

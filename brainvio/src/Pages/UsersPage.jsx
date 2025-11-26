@@ -127,8 +127,8 @@ function UsersPage() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/community" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>👥 Community</span>
+                                <NavLink to="/UsersPage/aitherapist" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>🤖 AI Therapist</span>
                                 </NavLink>
                             </li>
                             <li>
@@ -186,7 +186,7 @@ function UsersPage() {
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/mood" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>😊 Mood Tracking</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧘 Guided Exercises</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/cbt" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧠 CBT Tools</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/community" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>👥 Community</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/aitherapist" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🤖 AI Therapist</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/reminders" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🔔 Reminders</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/crisis" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🆘 Crisis Support</NavLink></li>
                                     <li><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>📚 Resources</NavLink></li>
