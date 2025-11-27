@@ -11,7 +11,7 @@ export default function DashboardOverview() {
                     <span className="greeting-emoji">✨</span>
                     <div>
                         <div className="greeting-main">
-                            Welcome back, {userData?.firstName || userData?.username}!
+                            Welcome back, {userData?.firstName ? userData.firstName.charAt(0).toUpperCase() + userData.firstName.slice(1).toLowerCase() : userData?.username ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase() : ''}!
                         </div>
                         <div className="greeting-sub">You're doing great. Let's reflect today.</div>
                     </div>
@@ -21,7 +21,7 @@ export default function DashboardOverview() {
             <div className="welcome-card mb-1">
                 <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                     <div>
-                        <h3 style={{margin:0}}>Welcome back{userData ? `, ${userData.firstName || userData.username}` : ''}.</h3>
+                        <h3 style={{margin:0}}>Welcome back{userData ? `, ${userData.firstName ? userData.firstName.charAt(0).toUpperCase() + userData.firstName.slice(1).toLowerCase() : userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase()}` : ''}.</h3>
                         <p className="muted-small" style={{margin:'6px 0 0'}}>Here's your wellness dashboard. Start by opening your journal.</p>
                     </div>
                     <div>

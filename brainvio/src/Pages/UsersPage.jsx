@@ -79,7 +79,7 @@ function UsersPage() {
                         <div className="profile-pill mb-1">
                         <div className="avatar">{userData ? userData.username.charAt(0).toUpperCase() : 'U'}</div>
                         <div>
-                            <div style={{fontWeight:700}}>{userData ? userData.username : 'No user'}</div>
+                            <div style={{fontWeight:700}}>{userData ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase() : 'No user'}</div>
                             <div className="muted-small">Member</div>
                         </div>
                         </div>
@@ -108,48 +108,19 @@ function UsersPage() {
                                     <span>Progress</span>
                                 </NavLink>
                             </li>
-                            <li style={{marginTop:'1rem', paddingTop:'1rem', borderTop:'1px solid rgba(0,0,0,0.05)'}}>
-                                <span style={{fontSize:'0.75rem', textTransform:'uppercase', color:'var(--muted)', fontWeight:600, display:'block', marginBottom:'0.5rem'}}>Features</span>
-                            </li>
                             <li>
-                                <NavLink to="/UsersPage/mood" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>😊 Mood Tracking</span>
+                                <NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                    <span>AI Buddy</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>🧘 Guided Exercises</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/UsersPage/cbt" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>🧠 CBT Tools</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/UsersPage/aitherapist" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>🤖 AI Therapist</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/UsersPage/reminders" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>🔔 Reminders</span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/UsersPage/crisis" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>🆘 Crisis Support</span>
+                                    <span>Guided Exercises</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <span>📚 Resources</span>
-                                </NavLink>
-                            </li>
-                            <li style={{marginTop:'1rem', borderTop:'1px solid rgba(0,0,0,0.05)', paddingTop:'1rem'}}>
-                                <NavLink to="/UsersPage/settings" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
-                                    <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9.4 4a7.9 7.9 0 0 0-.1-1l2.1-1.6-2-3.5-2.6.6a7.7 7.7 0 0 0-1.6-.9L15.7.9h-3.4L10.8 5c-.6.2-1.2.5-1.8.9L6.4 5.4 3.8 8.9l2.1 1.6c-.1.3-.1.6-.1 1s0 .7.1 1L3.8 14.7l2.6 3.5 2.6-.6c.5.4 1.1.7 1.8.9l1.5 4.1h3.4l1.5-4.1c.6-.2 1.1-.5 1.6-.9l2.6.6 2-3.5-2.1-1.6c.1-.3.1-.6.1-1z"/></svg>
-                                    <span>Settings</span>
+                                    <span>Resources</span>
                                 </NavLink>
                             </li>
                         </ul>
@@ -181,15 +152,9 @@ function UsersPage() {
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
                                     <li style={{marginBottom:8}}><NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
-                                    <li style={{marginBottom:'1rem', paddingBottom:'1rem', borderBottom:'1px solid rgba(0,0,0,0.05)', marginTop:'1rem'}}><NavLink to="/UsersPage/settings" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Settings</NavLink></li>
-                                    <li style={{fontSize:'0.75rem', textTransform:'uppercase', color:'var(--muted)', fontWeight:600, marginBottom:'0.5rem'}}>Features</li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/mood" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>😊 Mood Tracking</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧘 Guided Exercises</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/cbt" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧠 CBT Tools</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/aitherapist" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🤖 AI Therapist</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/reminders" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🔔 Reminders</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/crisis" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🆘 Crisis Support</NavLink></li>
-                                    <li><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>📚 Resources</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
+                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
+                                    <li><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
                                 </ul>
                             </nav>
                         </div>
