@@ -17,8 +17,8 @@ function Home(){
     ];
 
     return (
-        <div className="container" style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'2rem', padding:'2rem', minHeight:'100vh', background:'linear-gradient(135deg, rgba(10,132,255,0.05) 0%, rgba(10,132,255,0.02) 100%)'}}>
-            <div style={{maxWidth:'700px', width:'100%'}}>
+        <div className="container" style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', gap:'2rem', padding:'2rem 1rem', minHeight:'100vh', width:'100%', maxWidth:'100vw', overflowX:'hidden', boxSizing:'border-box', background:'linear-gradient(135deg, rgba(10,132,255,0.05) 0%, rgba(10,132,255,0.02) 100%)'}}>
+            <div style={{maxWidth:'700px', width:'100%', margin:'0 auto'}}>
                 {/* Header */}
                 <div style={{textAlign:'center', marginBottom:'2rem'}}>
                     <Logo />
