@@ -7,6 +7,7 @@ export default function AITherapist() {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef(null);
+    const [sessionId] = useState(() => crypto.randomUUID());
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -14,20 +15,7 @@ export default function AITherapist() {
         }
     }, [messages, isTyping]);
 
-    function generateAIResponse(userText) {
-        if (userText.toLowerCase().includes('stress')) {
-            return 'I understand stress can feel overwhelming. Remember, it\'s okay to take breaks and reach out to a professional therapist if you need more support. What specific situation is causing you stress?';
-        }
-        if (userText.toLowerCase().includes('anx')) {
-            return 'Anxiety can be really challenging. Have you tried any grounding exercises? I\'d recommend speaking with a mental health professional who can provide personalized strategies. Would you like to talk more about what\'s making you anxious?';
-        }
-        if (userText.toLowerCase().includes('sad')) {
-            return 'I hear you, and your feelings are valid. Sometimes talking to a therapist can really help work through these emotions. What do you think might help you feel better right now?';
-        }
-        return 'I\'m here to listen. While I can offer support, please remember that speaking with a licensed therapist is always recommended for mental health concerns. Tell me more about what\'s on your mind.';
-    }
-
-    const handleSend = () => {
+    const handleSend = async () => {
         const trimmed = input.trim();
         if (!trimmed) return;
         
@@ -36,11 +24,44 @@ export default function AITherapist() {
         setInput('');
         setIsTyping(true);
         
-        setTimeout(() => {
-            const aiMsg = { id: Date.now() + 1, type: 'ai', text: generateAIResponse(trimmed) };
+        try {
+            const token = localStorage.getItem('authToken');
+            
+            const response = await fetch('http://127.0.0.1:8000/users/me/aibuddy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    message: trimmed,
+                    sessionID: sessionId
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to get AI response');
+            }
+
+            const data = await response.json();
+            
+            const aiMsg = { 
+                id: Date.now() + 1, 
+                type: 'ai', 
+                text: data.message 
+            };
             setMessages(prev => [...prev, aiMsg]);
+        } catch (error) {
+            console.error('Error:', error);
+            const errorMsg = { 
+                id: Date.now() + 1, 
+                type: 'ai', 
+                text: "I'm sorry, I'm having trouble connecting right now. Please try again later or contact support if the issue persists." 
+            };
+            setMessages(prev => [...prev, errorMsg]);
+        } finally {
             setIsTyping(false);
-        }, 900);
+        }
     };
 
     const handleKeyDown = (e) => {

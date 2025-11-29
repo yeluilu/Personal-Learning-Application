@@ -113,7 +113,6 @@ async def read_current_user(
 
 @router.post("/users/me/aibuddy")
 async def send_message( user_message: Message, current_user: Annotated[User, Depends(get_current_user)]):
-
     ai_response = await generate_response(user_message)
     return ai_response
 
