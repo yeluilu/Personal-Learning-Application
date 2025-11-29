@@ -5,7 +5,7 @@ function ButtonLogin(){
 
 
     return(
-        <Link to = "/LoginPage">
+        <Link to = "/login">
             <button className = "login">Login</button>
         </Link>
     );

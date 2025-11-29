@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Sign up button
 function ButtonSign(){
     return(
-        <Link to = "/SignupPage">
+        <Link to = "/signup">
             <button className = "signup">Sign Up</button>
         </Link>
     );

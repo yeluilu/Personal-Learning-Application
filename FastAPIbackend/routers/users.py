@@ -4,17 +4,15 @@ from sqlalchemy.exc import IntegrityError
 from sqlmodel import select, Session
 from typing import Annotated
 from pwdlib import PasswordHash
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-import jwt
-from jwt.exceptions import InvalidTokenError
+from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from datetime import datetime, timedelta, timezone
+import jwt
 
-################################### CREATING TOKENS ###############################################################
-SECRET_KEY = "ee64d7b78c6e3c6ea2e6f374c7104b902fe741d75e875c77e5acbc21771a1a02"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+from config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
+from dependencies import get_current_user
 
+################################### Token Model ###############################################################
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -29,13 +27,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-###################################################################################################################
-
-
-
-
-
-##################################### Hashing password ############################################################
+##################################### Password Hashing ############################################################
 password_hash = PasswordHash.recommended()
 
 
@@ -112,9 +104,18 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], sess
 
 
 
+@router.get("/users/me", response_model=User)
+async def read_current_user(
+    current_user: Annotated[User, Depends(get_current_user)]
+):
+    """Get current authenticated user information"""
+    return current_user
+
 @router.delete("/wipe")
 def wipe_all_users(session: Session = Depends(get_session)):
-    session.query(User).delete(); session.commit()
+    """Development only: Delete all users from database"""
+    session.query(User).delete()
+    session.commit()
     return {"message": "All users deleted."}
 
 ###################################################################################################################

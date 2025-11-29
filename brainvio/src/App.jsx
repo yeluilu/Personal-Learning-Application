@@ -16,9 +16,9 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path = "/" element = {<Home/>}/>
-				<Route path = "/LoginPage" element = {<LoginPage/>}/>
-				<Route path = "/SignupPage" element = {<SignupPage/>}/>
-			<Route path = "/UsersPage/*" element = {<UsersPage/>}>
+				<Route path = "/login" element = {<LoginPage/>}/>
+				<Route path = "/signup" element = {<SignupPage/>}/>
+			<Route path = "/users/me/*" element = {<UsersPage/>}>
 				<Route index element={<DashboardOverview/>} />
 				<Route path="journal" element={<DashboardJournal/>} />
 				<Route path="progress" element={<DashboardProgress/>} />

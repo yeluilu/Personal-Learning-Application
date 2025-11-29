@@ -43,7 +43,7 @@ function SignupPage(){
             if (response.ok){
                 console.log("Success:", result);
                 localStorage.setItem("authToken", token);
-                navigate("/UsersPage", { state: { user: result } });
+                navigate("/users/me", { state: { user: result } });
             }
             else{
                 setError(result.detail || "Signup failed. Please try again.");
@@ -156,7 +156,7 @@ function SignupPage(){
                 {/* Footer */}
                 <div style={{textAlign:'center', marginTop:'1.5rem'}}>
                     <p style={{fontSize:'0.95rem', color:'var(--muted)', marginBottom:'0.75rem'}}>Already have an account?</p>
-                    <Link to="/LoginPage" style={{
+                    <Link to="/login" style={{
                         color:'var(--accent)',
                         textDecoration:'none',
                         fontWeight:500,

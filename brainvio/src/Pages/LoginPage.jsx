@@ -34,7 +34,7 @@ function LoginPage() {
         const token = result.access_token;
         localStorage.setItem("authToken", token);
         console.log("Success:", result);
-        navigate("/UsersPage");
+        navigate("/users/me");
       } else {
         setError(result.detail || "Incorrect username or password");
       }
@@ -103,7 +103,7 @@ function LoginPage() {
         {/* Footer */}
         <div style={{textAlign:'center', marginTop:'1.5rem'}}>
           <p style={{fontSize:'0.95rem', color:'var(--muted)', marginBottom:'0.75rem'}}>Don't have an account?</p>
-          <Link to="/SignupPage" style={{
+          <Link to="/signup" style={{
             color:'var(--accent)',
             textDecoration:'none',
             fontWeight:500,

@@ -58,7 +58,7 @@ function UsersPage() {
 
     // ✅ Redirect if no token or fetch failed
     if (!savedToken || error) {
-        return <Navigate to="/LoginPage" />;
+        return <Navigate to="/login" />;
     }
 
     // ✅ Show loading message while fetching user data
@@ -68,7 +68,7 @@ function UsersPage() {
 
     const handleLogout = () => {
         localStorage.removeItem('authToken');
-        navigate('/LoginPage');
+        navigate('/login');
     };
 
     return (
@@ -91,35 +91,35 @@ function UsersPage() {
                     <nav>
                         <ul className="dashboard-nav">
                             <li>
-                                <NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8.5z"/></svg>
                                     <span>Overview</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM8 7h8v2H8V7zM8 11h8v2H8v-2z"/></svg>
                                     <span>Journal</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h3v4H3v-4zm5-6h3v10H8V11zm5-4h3v14h-3V7zm5-6h3v20h-3V1z"/></svg>
                                     <span>Progress</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <span>AI Buddy</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <span>Guided Exercises</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
+                                <NavLink to="/users/me/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`}>
                                     <span>Resources</span>
                                 </NavLink>
                             </li>
@@ -149,12 +149,12 @@ function UsersPage() {
                             </div>
                             <nav>
                                 <ul className="dropdown-nav-list">
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/users/me/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
                                 </ul>
                             </nav>
                         </div>
