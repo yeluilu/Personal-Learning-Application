@@ -8,7 +8,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from datetime import datetime, timedelta, timezone
 import jwt
-
+from AI import generate_response, Message
 from config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 from dependencies import get_current_user
 
@@ -111,11 +111,20 @@ async def read_current_user(
     """Get current authenticated user information"""
     return current_user
 
+@router.post("/users/me/aibuddy")
+async def send_message( user_message: Message, current_user: Annotated[User, Depends(get_current_user)]):
+
+    ai_response = await generate_response(user_message)
+    return ai_response
+
 @router.delete("/wipe")
 def wipe_all_users(session: Session = Depends(get_session)):
     """Development only: Delete all users from database"""
     session.query(User).delete()
     session.commit()
     return {"message": "All users deleted."}
+
+
+
 
 ###################################################################################################################
