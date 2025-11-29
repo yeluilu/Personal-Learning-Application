@@ -75,11 +75,11 @@ function UsersPage() {
         <div className="container">
             <div className={`dashboard ${!isSidebarVisible ? 'collapsed' : ''}`}>
                 <aside className="dashboard-sidebar">
-                    <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                    <div className="sidebar-header">
                         <div className="profile-pill mb-1">
                         <div className="avatar">{userData ? userData.username.charAt(0).toUpperCase() : 'U'}</div>
                         <div>
-                            <div style={{fontWeight:700}}>{userData ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase() : 'No user'}</div>
+                            <div className="sidebar-username">{userData ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase() : 'No user'}</div>
                             <div className="muted-small">Member</div>
                         </div>
                         </div>
@@ -126,7 +126,7 @@ function UsersPage() {
                         </ul>
                     </nav>
 
-                    <div style={{marginTop: '1rem'}}>
+                    <div className="sidebar-logout">
                         <button className="btn-ghost" onClick={handleLogout}>Log out</button>
                     </div>
                 </aside>
@@ -134,7 +134,7 @@ function UsersPage() {
                 <main className="dashboard-main">
                     {/* Hamburger button in top-right */}
                     {!isNavOpen && (
-                    <div style={{position:'fixed', top:20, right:20, zIndex:1300}}>
+                    <div className="hamburger-wrapper">
                         <button className="sections-button" aria-expanded={isNavOpen} aria-label="Toggle navigation" onClick={() => setIsNavOpen(!isNavOpen)}>
                             <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         </button>
@@ -143,24 +143,24 @@ function UsersPage() {
                     {/* Dropdown panel in top-right corner */}
                     {isNavOpen && (
                         <div className="dashboard-dropdown-panel" role="menu">
-                            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8}}>
-                                <h4 style={{margin:0}}>Menu</h4>
-                                <button className="btn-ghost" onClick={() => setIsNavOpen(false)} aria-label="Close menu" style={{padding:'4px 8px'}}>✕</button>
+                            <div className="dropdown-header">
+                                <h4>Menu</h4>
+                                <button className="btn-ghost" onClick={() => setIsNavOpen(false)} aria-label="Close menu">✕</button>
                             </div>
                             <nav>
-                                <ul>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
-                                    <li style={{marginBottom:8}}><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
-                                    <li><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
+                                <ul className="dropdown-nav-list">
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
+                                    <li className="dropdown-nav-item"><NavLink to="/UsersPage/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
                                 </ul>
                             </nav>
                         </div>
                     )}
 
-                    <section style={{marginTop:'1rem'}}>
+                    <section className="dashboard-content">
                         <UserContext.Provider value={{ userData, setIsJournalOpen }}>
                             <Outlet />
                         </UserContext.Provider>
