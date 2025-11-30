@@ -1,8 +1,8 @@
 from typing import Annotated
-
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-
+import os
+from datetime import datetime
 
 class User(SQLModel, table=True):
     username: str = Field(index=True, primary_key = True)
@@ -11,11 +11,35 @@ class User(SQLModel, table=True):
     lastName: str
     password: str
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+class JournalEntry(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    title: str
+    mood: str
+    content: str
+    date: str
+    username: str = Field(foreign_key="user.username")
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+# MySQL configuration
+MYSQL_USER = os.getenv("sqlVariable")
+MYSQL_PASSWORD = os.getenv("sqlPassword")
+MYSQL_HOST = "127.0.0.1"
+MYSQL_PORT = "3306"
+MYSQL_DATABASE = "mydatabase"
+
+# Check if credentials are loaded
+if not MYSQL_USER or not MYSQL_PASSWORD:
+    raise ValueError("MySQL credentials not found. Make sure sqlVariable and sqlPassword are set in environment variables.")
+
+# MySQL connection URL for SQLModel
+mysql_url = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+
+try:
+    engine = create_engine(mysql_url, echo=True)
+except Exception as e:
+    print(f"Failed to connect to MySQL: {e}")
+    raise
 
 
 def create_db_and_tables():
@@ -28,6 +52,4 @@ def get_session():
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
-
-
 

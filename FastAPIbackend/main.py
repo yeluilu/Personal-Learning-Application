@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import users
+from routers import users, journal
 from database import create_db_and_tables
 
 # Creating app 
@@ -31,3 +31,4 @@ app.add_middleware(
 
 # Include routers
 app.include_router(users.router, tags=["users"])
+app.include_router(journal.router, tags=["journal"])

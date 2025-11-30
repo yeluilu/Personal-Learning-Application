@@ -1,32 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function DashboardJournal() {
     const [entries, setEntries] = useState([]);
     const [isCreating, setIsCreating] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [newEntry, setNewEntry] = useState({
         title: '',
         mood: 'Neutral',
         content: ''
     });
 
-    const handleCreate = () => {
-        if (!newEntry.title.trim() || !newEntry.content.trim()) return;
-        
-        const entry = {
-            id: Date.now(),
-            date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-            mood: newEntry.mood,
-            title: newEntry.title,
-            content: newEntry.content
-        };
-        
-        setEntries([entry, ...entries]);
-        setNewEntry({ title: '', mood: 'Neutral', content: '' });
-        setIsCreating(false);
+    // Fetch entries on component mount
+    useEffect(() => {
+        fetchEntries();
+    }, []);
+
+    const fetchEntries = async () => {
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch('http://127.0.0.1:8000/users/me/journal', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                setEntries(data);
+            }
+        } catch (error) {
+            console.error('Error fetching entries:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleDelete = (id) => {
-        setEntries(entries.filter(entry => entry.id !== id));
+    const handleCreate = async () => {
+        if (!newEntry.title.trim() || !newEntry.content.trim()) return;
+        
+        try {
+            const token = localStorage.getItem('authToken');
+            const entry = {
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                mood: newEntry.mood,
+                title: newEntry.title,
+                content: newEntry.content
+            };
+            
+            const response = await fetch('http://127.0.0.1:8000/users/me/journal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(entry)
+            });
+            
+            if (response.ok) {
+                await fetchEntries(); // Refresh entries
+                setNewEntry({ title: '', mood: 'Neutral', content: '' });
+                setIsCreating(false);
+            }
+        } catch (error) {
+            console.error('Error creating entry:', error);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch(`http://127.0.0.1:8000/users/me/journal/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (response.ok) {
+                setEntries(entries.filter(entry => entry.id !== id));
+            }
+        } catch (error) {
+            console.error('Error deleting entry:', error);
+        }
     };
 
     const moodColors = {
@@ -159,7 +214,11 @@ export default function DashboardJournal() {
 
             {/* Journal Entries List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {entries.length === 0 ? (
+                {loading ? (
+                    <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'var(--muted)' }}>
+                        Loading your entries...
+                    </div>
+                ) : entries.length === 0 ? (
                     <div style={{
                         textAlign: 'center',
                         padding: '3rem 1rem',
