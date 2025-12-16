@@ -9,3 +9,5 @@ build/
 database.db
 *.sqlite
 *.sqlite3
+
+.env

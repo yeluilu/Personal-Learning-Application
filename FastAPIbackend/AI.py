@@ -1,11 +1,16 @@
 from openai import OpenAI
 import os
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
+load_dotenv()
 
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OPENAI_API_KEY environment variable is missing. Please add it to your .env file.")
 
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY")
+    api_key= api_key
 )
 
 conversations = {}
