@@ -2,12 +2,25 @@ from openai import OpenAI
 import os
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv()
+load_dotenv(override=True)
 
 api_key = os.getenv("OPENAI_API_KEY")
+
+
+
+
+if api_key:
+    api_key = api_key.strip()
+
 if not api_key:
     raise ValueError("OPENAI_API_KEY environment variable is missing. Please add it to your .env file.")
+
+# Debug: verify the key looks correct (first/last 10 chars)
+print(f"API Key starts with: {api_key[:10]}")
+print(f"API Key ends with: {api_key[-10:]}")
+print(f"API Key length: {len(api_key)}")
 
 client = OpenAI(
     api_key= api_key
