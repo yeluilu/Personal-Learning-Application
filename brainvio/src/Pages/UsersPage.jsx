@@ -83,26 +83,68 @@ function UsersPage() {
                         </button>
                     </div>
                     )}
-                    {/* Dropdown panel in top-right corner */}
+                    {/* Calm dropdown panel */}
                     {isNavOpen && (
-                        <div className="dashboard-dropdown-panel" role="menu">
-                            <div className="dropdown-header">
-                                <h4>Menu</h4>
-                                <button className="btn-ghost" onClick={() => setIsNavOpen(false)} aria-label="Close menu">✕</button>
+                        <div className="calm-dropdown-panel" role="menu">
+                            <div style={{padding: '1.5rem', borderBottom: '1px solid rgba(141,153,174,0.1)'}}>
+                                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
+                                    <h4 style={{margin: 0, fontSize: '1.1rem', fontWeight: 500, color: 'var(--text)'}}>Menu</h4>
+                                    <button 
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            fontSize: '1.5rem',
+                                            color: 'var(--muted)',
+                                            cursor: 'pointer',
+                                            padding: '0.25rem'
+                                        }}
+                                        onClick={() => setIsNavOpen(false)} 
+                                        aria-label="Close menu"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                                    <div className="avatar">{userData ? userData.username.charAt(0).toUpperCase() : 'U'}</div>
+                                    <div>
+                                        <div style={{fontWeight: 500, fontSize: '0.95rem', color: 'var(--text)'}}>
+                                            {userData ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1).toLowerCase() : 'User'}
+                                        </div>
+                                        <div style={{fontSize: '0.85rem', color: 'var(--muted)'}}>
+                                            {userData?.email}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <nav>
-                                <ul className="dropdown-nav-list">
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me" end className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Overview</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me/journal" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Journal</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me/progress" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Progress</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me/aibuddy" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>AI Buddy</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me/exercises" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Guided Exercises</NavLink></li>
-                                    <li className="dropdown-nav-item"><NavLink to="/users/me/resources" className={({isActive}) => `nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>Resources</NavLink></li>
-                                    <li className="dropdown-nav-item" style={{borderTop: '1px solid rgba(0,0,0,0.06)', marginTop: '0.5rem', paddingTop: '0.5rem'}}>
-                                        <button className="btn-ghost" onClick={handleLogout} style={{width: '100%', textAlign: 'left'}}>Log out</button>
-                                    </li>
+                            <nav style={{padding: '1rem'}}>
+                                <ul style={{listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.25rem'}}>
+                                    <li><NavLink to="/users/me/aibuddy" className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>💬 Chat</NavLink></li>
+                                    <li><NavLink to="/users/me/journal" className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>📝 Journal</NavLink></li>
+                                    <li><NavLink to="/users/me/exercises" className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🧘 Exercises</NavLink></li>
+                                    <li><NavLink to="/users/me/progress" className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>📊 Progress</NavLink></li>
+                                    <li><NavLink to="/users/me" end className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🏠 Home</NavLink></li>
+                                    <li><NavLink to="/users/me/resources" className={({isActive}) => `calm-nav-item ${isActive ? 'active' : ''}`} onClick={() => setIsNavOpen(false)}>🆘 Support</NavLink></li>
                                 </ul>
                             </nav>
+                            <div style={{padding: '1rem', borderTop: '1px solid rgba(141,153,174,0.1)'}}>
+                                <button 
+                                    onClick={handleLogout}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        background: 'transparent',
+                                        border: '1.5px solid rgba(141,153,174,0.2)',
+                                        borderRadius: '12px',
+                                        color: 'var(--text-soft)',
+                                        fontSize: '0.95rem',
+                                        fontWeight: 500,
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
                         </div>
                     )}
 
